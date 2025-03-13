@@ -27,7 +27,7 @@ WLEdataloader is a flexible and efficient data loading framework designed to han
 You can install the WLEdataloader framework using pip:
 
 ```bash
-pip install wledataloader
+pip install git+https://github.com/IECResearchGroup/WLEDataLoader.git
 ```
 
 ## Usage
