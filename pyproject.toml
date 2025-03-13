@@ -11,13 +11,13 @@ license = { text = "MIT" }
 readme = "README.md"
 requires-python = ">=3.7"
 dependencies = [
-    "appdirs==1.4.4",
-    "natsort==8.4.0",
-    "numpy==2.2.3",
-    "pandas==2.2.3",
-    "requests==2.32.3",
-    "scikit_learn==1.6.1",
-    "tqdm==4.66.5"
+    "appdirs",
+    "natsort",
+    "numpy",
+    "pandas",
+    "requests",
+    "scikit_learn",
+    "tqdm"
 ]
 
 [tool.setuptools]
