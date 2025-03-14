@@ -1,4 +1,4 @@
-from src.WLEdataloader import RaspColLoader
+from wledataloader import RaspColLoader
 
 data = RaspColLoader()
 data.PrepareData(reload=False, extend_feature=True)

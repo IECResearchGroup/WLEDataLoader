@@ -1,8 +1,8 @@
 from .utils import *
 from .base_loader import DataBase
 
-class RaspColLoader(DataBase):
-    def __init__(self, seed=0xDEADBEEF, printable=True, rate_list=[0.9, 0.8, 0.7, 0.6, 0.5, 0.0], save_csv=True) -> None:
+class IECWLE24Loader(DataBase):
+    def __init__(self, seed=0xDEADBEEF, printable=True, rate_list=[], save_csv=True) -> None:
         self.download_url = 'http://clouds.iec-uit.com/wireless-link-estimation/RASP_COL.zip'
         self.dataname = 'RASP_COL'
         super().__init__(seed, printable, rate_list, save_csv)

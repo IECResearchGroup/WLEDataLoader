@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "wledataloader"
-version = "0.1.0"
+version = "0.1.1"
 description = "A dataloader for the Wireless Link Estimation dataset to train and test ML models."
 authors = [{ name = "NT Nguyen", email = "info@iec-uit.com" }]
 license = { text = "MIT" }

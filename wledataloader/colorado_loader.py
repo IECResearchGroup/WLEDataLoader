@@ -21,7 +21,7 @@ class ColoradoLoader(DataBase):
     Inherits from the DataBase class.
     """
 
-    def __init__(self, seed=0xDEADBEEF, printable=True, rate_list=[0.9, 0.8, 0.7, 0.6, 0.5, 0.0], save_csv=True, rssi_process_type=1) -> None:
+    def __init__(self, seed=0xDEADBEEF, printable=True, rate_list=[0.9, 0.1, 0.0], save_csv=True, rssi_process_type=1) -> None:
         """
         Initialize the ColoradoLoader class.
 

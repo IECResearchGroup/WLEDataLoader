@@ -3,16 +3,13 @@
 WLEdataloader is a flexible and efficient data loading framework designed to handle various datasets for wireless communication research. This framework provides tools to preprocess, load, and analyze data, making it easier for researchers to work with large datasets.
 
 ## WLE Dataset
-
-### Rutgers Dataset
-- **Paper Title**: "A Comprehensive Study on Wireless Communication"
-- **DOI**: 10.1234/rutgers.2023
-- **Download Link**: [Rutgers Dataset](http://example.com/rutgers-dataset)
-
-### Colorado Dataset
-- **Paper Title**: "Advanced Techniques in Wireless Data Analysis"
-- **DOI**: 10.1234/colorado.2023
-- **Download Link**: [Colorado Dataset](http://clouds.iec-uit.com/wireless-link-estimation/Colorado.zip)
+| **Trace-set** | **Paper Title** | **Download Link**  |
+|-|-|-|
+| **Rutgers** | Creating wireless multi-hop topologies on space-constrained indoor testbeds through noise injection | [Download](http://clouds.iec-uit.com/wireless-link-estimation/Rutgers.zip) |
+| **Colorado** | The impact of directional antenna models on simulation accuracy| [Download](http://clouds.iec-uit.com/wireless-link-estimation/Colorado.zip) |
+| **JSI** | Optimization of ultra-narrowband wireless communication: an experimental case study | [Download](http://clouds.iec-uit.com/wireless-link-estimation/JSI_SIGFOX.zip) |
+| **Packet-meta** | Experimental study for multi-layer parameter configuration of WSN links| [Download](http://clouds.iec-uit.com/wireless-link-estimation/Packetmetadata.zip) |
+|**IEC_WLE24** | Our dataset | [Download](http://clouds.iec-uit.com/wireless-link-estimation/RASP_COL.zip)
 
 ## Features
 
@@ -27,78 +24,108 @@ WLEdataloader is a flexible and efficient data loading framework designed to han
 You can install the WLEdataloader framework using pip:
 
 ```bash
-pip install git+https://github.com/IECResearchGroup/WLEDataLoader.git
+pip install wledataloader
 ```
 
 ## Usage
 
-### Importing the Framework
-
-To start using the WLEdataloader framework, import the necessary classes:
+### 1. Import the library
 
 ```python
-from wledataloader import WLEdataloader
+from wledataloader import ColoradoLoader
+from wledataloader import JsiSigfoxLoader
+from wledataloader import PktMetaLoader
+from wledataloader import RutgersLoader
+from wledataloader import IECWLE24Loader
 ```
 
-### Loading Data
+- ColoradoLoader: Load data from Colorado dataset
+- JsiSigfoxLoader: Load data from JSI Sigfox dataset
+- PktMetaLoader: Load data from PktMeta dataset
+- RutgersLoader: Load data from Rutgers dataset
+- IECWLE24Loader: Load data from IECWLE24 dataset
 
-#### Rutgers Dataset
-
-To load and preprocess data from the Rutgers dataset:
+### 2. Initialize the `ColoradoLoader` object
 
 ```python
-from wledataloader import RutgersDataset
-
-rutgers_data = RutgersDataset()
-rutgers_data.load_data()
-rutgers_data.preprocess()
+data = ColoradoLoader(seed=0xDEADBEEF, printable=True, rate_list=[0.9, 0.1, 0.0], save_csv=True, rssi_process_type=1)
 ```
 
-#### Colorado Dataset
+This initializes an instance of `ColoradoLoader`, automatically checking and managing cached data.
 
-To load and preprocess data from the Colorado dataset:
+### 3. Prepare the dataset
 
 ```python
-from wledataloader import ColoradoDataset
-
-colorado_data = ColoradoDataset()
-colorado_data.load_data()
-colorado_data.preprocess()
+data.PrepareData(reload=False, extend_feature=True)
 ```
 
-### Adding More Features
+#### Parameters:
 
-You can add more features to the dataset using the `AddMoreFeatures` method:
+- `reload` (bool, default `False`): If `True`, reloads data from the source, ignoring cached files.
+- `extend_feature` (bool, default `True`): If `True`, generates additional features for analysis or model training.
+
+### 4. Check dataset shape
 
 ```python
-data.add_more_features()
+print(data._data_df.shape)
 ```
 
-### Removing Classes
+### 5. Analyze and Prepare Data for Training
 
-To remove specific classes from the dataset:
+#### a. Perform Basic Analysis
+
+The `ShowBasicAnalysis()` method provides a quick overview of the dataset, including statistical summaries and visualizations.
 
 ```python
-data.remove_classes(classes_to_remove)
+data.ShowBasicAnalysis()
 ```
 
-### Train-Test Split
-
-To split the data into training and testing sets:
+#### b. Extract Features and Labels
 
 ```python
-train_data, test_data = data.train_test_split(test_size=0.2)
+X, y = data.GetXY()
 ```
 
-### Converting to DataFrame
-
-To convert the data to a DataFrame:
+#### c. Split Data into Training and Testing Sets
 
 ```python
-df = data.to_dataframe()
+X_train, X_test, y_train, y_test = data.TrainTestSplit(test_size=0.2)
 ```
 
-### Contributing
+##### Parameters:
+- `test_size` (float, default `0.2`): The proportion of the dataset to include in the test split.
+
+### Example Workflow
+
+```python
+from wledataloader import ColoradoLoader
+
+# Initialize loader
+data = ColoradoLoader()
+
+# Prepare dataset
+data.PrepareData(reload=False, extend_feature=True)
+
+# Perform basic analysis
+data.ShowBasicAnalysis()
+
+# Extract features and labels
+X, y = data.GetXY()
+
+# Split data into training and testing sets
+X_train, X_test, y_train, y_test = data.TrainTestSplit(test_size=0.2)
+
+# Display dataset shapes
+print("Training set shape:", X_train.shape, y_train.shape)
+print("Testing set shape:", X_test.shape, y_test.shape)
+```
+
+## Notes
+
+- The library may require an internet connection if the data is not cached locally.
+- If missing data errors occur, try setting `reload=True` in `PrepareData()`.
+
+## Contributing
 We welcome contributions to the WLEdataloader framework. If you have any suggestions, bug reports, or feature requests, please open an issue on the GitHub repository.
 
 ## License

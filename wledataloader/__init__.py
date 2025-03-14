@@ -5,7 +5,7 @@ Support for loading data from different sources.
 - JsiSigfoxLoader: Load data from JSI Sigfox dataset
 - PktMetaLoader: Load data from PktMeta dataset
 - RutgersLoader: Load data from Rutgers dataset
-- RaspColLoader: Load data from RaspCol dataset
+- IECWLE24Loader: Load data from IECWLE24 dataset
 
 Example:
     from WLEdataloader import ColoradoLoader
@@ -17,4 +17,4 @@ from .colorado_loader import ColoradoLoader
 from .jsi_sigfox_loader import JsiSigfoxLoader
 from .pktmeta_loader import PktMetaLoader
 from .rutgers_loader import RutgersLoader
-from .raspcol_loader import RaspColLoader       
+from .iecwle24_loader import IECWLE24Loader       
