@@ -22,3 +22,9 @@ dependencies = [
 
 [tool.setuptools]
 packages = ["wledataloader"]
+
+[project.urls]
+Homepage = "https://github.com/IECResearchGroup/WLEDataLoader"
+Repository = "https://github.com/IECResearchGroup/WLEDataLoader"
+Documentation = "https://github.com/IECResearchGroup/WLEDataLoader/wiki"
+Issues = "https://github.com/IECResearchGroup/WLEDataLoader/issues"
